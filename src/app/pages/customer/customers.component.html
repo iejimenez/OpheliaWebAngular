@@ -1,0 +1,33 @@
+<h2 class="content-block">Customers</h2>
+<dx-toast [(visible)]="isVisible" [type]="type" [displayTime]=20000 [message]="message">
+</dx-toast>
+<dx-data-grid
+    [dataSource]="customers"
+    keyExpr="id" 
+    (onRowInserting)="addNewCustomer($event)" 
+    (onRowUpdating)="updateCustomer($event)"
+    (onRowRemoving)="deleteCustomer($event)">
+    
+    <dxi-column dataField="id">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="name">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column
+        dataField="birthDate"
+        dataType="date">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+
+    <dxo-editing
+        mode="popup"
+        [allowUpdating]="true"
+        [allowDeleting]="true"
+        [allowAdding]="true"
+        [confirmDelete]="true">
+    </dxo-editing>
+</dx-data-grid>
+
+
+

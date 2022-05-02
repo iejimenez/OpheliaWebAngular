@@ -1,0 +1,36 @@
+<h2 class="content-block">Products</h2>
+<dx-toast [(visible)]="isVisible" [type]="type" [displayTime]=20000 [message]="message">
+</dx-toast>
+<dx-data-grid
+    [dataSource]="products"
+    keyExpr="id" 
+    (onRowInserting)="addNewProduct($event)" 
+    (onRowUpdating)="updateProduct($event)"
+    (onRowRemoving)="deleteProduct($event)">
+    
+    
+    <dxi-column dataField="name">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column
+        dataField="unitPrice"
+        dataType="number">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+
+    <dxi-column
+        dataField="stock"
+        dataType="number">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+
+    <dxo-editing
+        mode="popup"
+        [allowUpdating]="true"
+        [allowDeleting]="true"
+        [allowAdding]="true"
+        [confirmDelete]="true">
+    </dxo-editing>
+</dx-data-grid>
+
+
